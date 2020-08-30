@@ -61,7 +61,7 @@ const ContactForm = () => {
                         </Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
-                <Button variant="primary" type="submit">
+                <Button variant="dark" type="submit">
                     Submit
                 </Button>
             </Form>

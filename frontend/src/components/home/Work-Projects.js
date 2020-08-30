@@ -30,9 +30,10 @@ const WorksGallery = () => {
             const projectListResult = await fetch('api/projectlist');
             const projectsBody = await projectsResult.json();
             const projectListBody = await projectListResult.json();
+            const newProjectListBody = projectListBody.sort((a, b) => (a.type > b.type) ? 1 : -1);
             
             setProjects(projectsBody);
-            setProjectList(projectListBody);
+            setProjectList(newProjectListBody);
             updateFilters(projectsBody);
             setIsLoaded(true);
         }
@@ -59,6 +60,12 @@ const WorksGallery = () => {
         const {
             target: { value }
         } = event;
+
+        const newProjectList = projectList.map(list => {
+            list.isChecked = list.type === value;
+            return list;
+        });
+        setProjectList(newProjectList);
         updateFilters(() => {
             return projects.filter(f => f.type.indexOf(value) >= 0);
         });
@@ -66,78 +73,71 @@ const WorksGallery = () => {
 
     return (
         isLoaded ?
-        <React.Fragment>
-            <Row>
-                <Col md="12" className="button-group filters-button-group">
-                    {projectList.map((list, i) => {
+            <React.Fragment>
+                <Row>
+                    <Col md="12" className="button-group filters-button-group">
+                        {projectList.map((list, i) => {
+                            return (
+                                <FilterBtn key={i} value={list.type} className={`btn-light ${list.isChecked ? "active" : ""}`} onClick={onFilter}>{list.name}</FilterBtn>
+                            )
+                        })}
+                    </Col>
+                </Row>
+                <div className='mt-5'></div> 
+                <Row>
+                    {filters.map((project, id) => {
                         return (
-                            <FilterBtn key={i} value={list.type} className="btn-light" onClick={onFilter}>{list.name}</FilterBtn>
-                        )
+                            <Col key={id} lg="3" md="4" sm="6" xs="12">
+                                <GalleryProject>
+                                    <img onClick={handleShow} style={{ cursor: 'pointer' }} data-index={id} src={project.image} className="img-responsive gallery_image" alt="" />
+                                </GalleryProject>
+                                <hr />
+                                <h6 className="galley_title">{project.name}</h6>
+                            </Col>
+
+                        );
                     })}
-                </Col>
-            </Row>
-            <Row>
-                {filters.map((project, id) => {
-                    return (
-                        <Col key={id} lg="3" md="4" sm="6" xs="12">
-                            <GalleryProject>
-                                <img onClick={handleShow} style={{cursor: 'pointer'}} data-index={id} src={project.image} className="img-responsive gallery_image" alt="" />
-                            </GalleryProject>
-                            <hr />
-                            <h6 className="galley_title">{project.name}</h6>
-                        </Col>
+                </Row>
 
-                    );
-                })}
-            </Row>
-
-            <WorksModal
-                show={show}
-                onHide={handleClose}
-                size="lg"
-                centered
-                scrollable={true}
-            >
-                <Modal.Header closeButton>
-                    <Modal.Title>{currentModalContent.name}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Row className="justify-content-md-center">
-                        <SingleProject>
-                            <img src={currentModalContent.image} className="gallery_image" alt="" />
-                        </SingleProject>
-                    </Row>
-                    <Row>
-                        <Col md="12">
-                            <h3>{currentModalContent.name}</h3>
-                            <Tabs className="tab-content" defaultActiveKey="description" transition={false} id="noanim-tab-example">
-                                <Tab eventKey="description" title="Description">
-                                    {ReactHtmlParser(currentModalContent.description)}
-                                </Tab>
-                                <Tab eventKey="contribution" title="Contribution">
-                                    {ReactHtmlParser(currentModalContent.contribution)}
-                                </Tab>
-                            </Tabs>
-                            <ProgressBar now={currentModalContent.percentage} label={`${currentModalContent.percentage}%`} />
-                            <br />
-                            <div className="bg-inverse text-white">
-                                <a href={currentModalContent.link} type="button" rel="noopener noreferrer" target="_blank">See Project</a>
-                            </div>
-                        </Col>
-                    </Row>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </WorksModal>
-        </React.Fragment >
-        :
-        <React.Fragment>
+                <WorksModal
+                    show={show}
+                    onHide={handleClose}
+                    size="lg"
+                    centered
+                    scrollable={true}
+                >
+                    <Modal.Header closeButton>
+                        <Modal.Title>{currentModalContent.name}</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Row className="justify-content-md-center">
+                            <SingleProject>
+                                <img src={currentModalContent.image} className="gallery_image" alt="" />
+                            </SingleProject>
+                        </Row>
+                        <Row>
+                            <Col md="12">
+                                <h3>{currentModalContent.name}</h3>
+                                <Tabs className="tab-content" defaultActiveKey="description" transition={false} id="noanim-tab-example">
+                                    <Tab eventKey="description" title="Description">
+                                        {ReactHtmlParser(currentModalContent.description)}
+                                    </Tab>
+                                    <Tab eventKey="contribution" title="Contribution">
+                                        {ReactHtmlParser(currentModalContent.contribution)}
+                                    </Tab>
+                                </Tabs>
+                                <ProgressBar now={currentModalContent.percentage} label={`${currentModalContent.percentage}%`} />
+                                <br />
+                                <div className="bg-inverse text-white">
+                                    <a href={currentModalContent.link} type="button" rel="noopener noreferrer" target="_blank">See Project</a>
+                                </div>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </WorksModal>
+            </React.Fragment >
+            :
+            <React.Fragment>
                 Loading...
         </React.Fragment>
     );
