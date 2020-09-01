@@ -6,7 +6,7 @@ import AboutSocial from './About-Social';
 import { Container } from 'react-bootstrap';
 
 
-const About = ({title}) => {
+const About = ({ title, description, image }) => {
     return (
         <React.Fragment>
             <Container>
@@ -14,8 +14,8 @@ const About = ({title}) => {
                     <SectionTitle >
                         {title}
                     </SectionTitle>
-                    <AboutContent />
-                    <AboutImage />
+                    <AboutContent description={description} />
+                    <AboutImage image={image} />
                     <AboutSocial />
                 </Section>
             </Container>

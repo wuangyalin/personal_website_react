@@ -37,7 +37,9 @@ const Body = () => {
             <React.Fragment>
                 {sections.map((section, index) => {
                     const SingleComponent = React.createElement(sectionComponents[section.id], {
-                        title: section.name
+                        title: section.name,
+                        description: section.description ? section.description : '',
+                        image: section.image ? section.image : '',
                     });
                     return (
                         <React.Fragment key={index}>

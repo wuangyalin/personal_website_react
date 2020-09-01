@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ReactHtmlParser from 'react-html-parser';
 // import { Projects, PorjectList } from '../../constants/Projects';
 import { FilterBtn, SingleProject, GalleryProject, WorksModal } from '../../styled-components/HomeStyles';
-import { Row, Col, Modal, Button, Tabs, Tab, ProgressBar } from 'react-bootstrap';
+import { Row, Col, Modal, Tabs, Tab, ProgressBar } from 'react-bootstrap';
 // import { useSpring, animated } from 'react-spring'
 
 
@@ -49,7 +49,7 @@ const WorksGallery = () => {
     const handleShow = event => {
         const clickedIndex = event.target.getAttribute("data-index");
         updateCurrentModalContent(() => {
-            return projects[clickedIndex];
+            return projects.find(selectedProject => selectedProject._id == clickedIndex);
         });
         setShow(true);
     };
@@ -89,7 +89,7 @@ const WorksGallery = () => {
                         return (
                             <Col key={id} lg="3" md="4" sm="6" xs="12">
                                 <GalleryProject>
-                                    <img onClick={handleShow} style={{ cursor: 'pointer' }} data-index={id} src={project.image} className="img-responsive gallery_image" alt="" />
+                                    <img onClick={handleShow} style={{ cursor: 'pointer' }} data-index={project._id} src={project.image} className="img-responsive gallery_image" alt="" />
                                 </GalleryProject>
                                 <hr />
                                 <h6 className="galley_title">{project.name}</h6>
