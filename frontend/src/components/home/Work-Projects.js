@@ -49,7 +49,7 @@ const WorksGallery = () => {
     const handleShow = event => {
         const clickedIndex = event.target.getAttribute("data-index");
         updateCurrentModalContent(() => {
-            return projects.find(selectedProject => selectedProject._id == clickedIndex);
+            return projects.find(selectedProject => selectedProject._id === clickedIndex);
         });
         setShow(true);
     };

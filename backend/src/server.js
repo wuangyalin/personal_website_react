@@ -1,11 +1,76 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { MongoClient, ObjectId } from 'mongodb';
-import path from 'path';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import db from './models/index';
+import authRoute from './routes/auth.routes';
+import userRoute from './routes/user.routes';
+
+
 
 const app = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
+
+/** AUTH */
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/user_auth', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Successfully connect to MongoDB.");
+    initial();
+}).catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+});
+
+const Role = db.role;
+
+authRoute(app);
+userRoute(app);
+
+function initial() {
+    Role.estimatedDocumentCount((err, count) => {
+        if (!err && count === 0) {
+            new Role({
+                name: "user"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'user' to roles collection");
+            });
+
+            new Role({
+                name: "moderator"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'moderator' to roles collection");
+            });
+
+            new Role({
+                name: "admin"
+            }).save(err => {
+                if (err) {
+                    console.log("error", err);
+                }
+
+                console.log("added 'admin' to roles collection");
+            });
+        }
+    });
+}
+
+
+/** AUTH END */
 
 const withDB = async (operations, res) => {
     try {

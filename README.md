@@ -6,8 +6,6 @@ When finished, it can replace nmy current personal website from WordPress to Rea
 
 ## Front-end
 - [x] React.js
-- [ ] Redux
-- [ ] Thunk
 
 ## Backend
 - [x] Node.js
@@ -15,6 +13,25 @@ When finished, it can replace nmy current personal website from WordPress to Rea
 
 ## DB
 - [x] mongo/dynamodb
+
+## Functionality 
+- [ ] single page
+- [ ] Three.js
+- [ ] login
+  1. Connect to mongoose
+  2. check Role table, if table is empty, create three roles.
+  3. /api/auth/signup
+     1. Middleware 1：verifySignUp.checkDuplicateUsernameOrEmail
+     2. Middleware 2: verifySignUp.checkRolesExisted
+     3. controller.signup => save to mongodb, object is User and Role
+  4. /api/auth/signin
+     1. controller.signin => finduser by username in mongodb
+     2. use bcrypt.compareSync to check password
+     3. get token by jwt.sign 
+     4. res to send roles and token
+  5. /api/test/(user or mod or admin)
+     1. middleware: authJwt to verify token
+- [ ] admin
 
 ## Unit Testing
 - [ ] Use Jest
