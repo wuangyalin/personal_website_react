@@ -15,9 +15,9 @@ When finished, it can replace nmy current personal website from WordPress to Rea
 - [x] mongo/dynamodb
 
 ## Functionality 
-- [ ] single page
-- [ ] Three.js
-- [ ] login
+- [x] View page
+- [x] Three.js
+- [x] login
   1. Connect to mongoose
   2. check Role table, if table is empty, create three roles.
   3. /api/auth/signup
@@ -31,7 +31,10 @@ When finished, it can replace nmy current personal website from WordPress to Rea
      4. res to send roles and token
   5. /api/test/(user or mod or admin)
      1. middleware: authJwt to verify token
-- [ ] admin
+- [ ] Admin page
+  - [ ] Edit Form
+  - [ ] New Form
+  - [ ] Delete  
 
 ## Unit Testing
 - [ ] Use Jest

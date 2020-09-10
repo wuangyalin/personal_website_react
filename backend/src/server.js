@@ -5,9 +5,6 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import db from './models/index';
 import authRoute from './routes/auth.routes';
-import userRoute from './routes/user.routes';
-
-
 
 const app = express();
 
@@ -31,7 +28,6 @@ mongoose.connect('mongodb://localhost/user_auth', {
 const Role = db.role;
 
 authRoute(app);
-userRoute(app);
 
 function initial() {
     Role.estimatedDocumentCount((err, count) => {
@@ -92,13 +88,13 @@ app.get('/api/personalinfo', async (req, res) => {
 });
 
 // update personalinfo by type
-app.post('/api/personalinfo/:type/update', async (req, res) => {
-    const type = req.params.type;
+app.post('/api/personalinfo/:id/update', async (req, res) => {
+    const _id = new ObjectId(req.params.id);
     const { icon, content, iconType, size } = req.body;
     withDB(async (db) => {
-        const typeToUpdate = await db.collection('personalinfo').findOne({ type: type });
+        const typeToUpdate = await db.collection('personalinfo').findOne({ _id: _id });
 
-        await db.collection('personalinfo').updateOne({ type: type }, {
+        await db.collection('personalinfo').updateOne({ _id: _id }, {
             '$set': {
                 icon: icon ? icon : typeToUpdate.icon,
                 content: content ? content : typeToUpdate.content,
@@ -106,7 +102,7 @@ app.post('/api/personalinfo/:type/update', async (req, res) => {
                 size: size ? size : typeToUpdate.size
             }
         });
-        const updatedTypeToUpdate = await db.collection('personalinfo').findOne({ type: type });
+        const updatedTypeToUpdate = await db.collection('personalinfo').findOne({ _id: _id });
 
         res.status(200).json(updatedTypeToUpdate);
     }, res);
@@ -198,6 +194,16 @@ app.get('/api/sections', async (req, res) => {
     }, res);
 });
 
+
+// get the homepage sections
+app.get('/api/sections/:section', async (req, res) => {
+    const section = req.params.section;
+    withDB(async (db) => {
+        const result = await db.collection('sections').find({ id: section }).toArray();
+        res.status(200).json(result);
+    }, res);
+});
+
 // update section by id
 app.post('/api/sections/:id/update', async (req, res) => {
     const _id = new ObjectId(req.params.id);
@@ -215,9 +221,7 @@ app.post('/api/sections/:id/update', async (req, res) => {
             }
         });
 
-        const updatedTypeToUpdate = await db.collection('sections').findOne({ _id: _id });
-
-        res.status(200).json(updatedTypeToUpdate);
+        res.status(200).json({ success: true });
 
     }, res);
 
@@ -249,8 +253,7 @@ app.post('/api/skills/:id/update', async (req, res) => {
                 size: size ? size : typeToUpdate.size,
             }
         });
-        const updatedTypeToUpdate = await db.collection('skills').findOne({ _id: _id });
-        res.status(200).json(updatedTypeToUpdate);
+        res.status(200).json({ success: true });
     }, res);
 });
 

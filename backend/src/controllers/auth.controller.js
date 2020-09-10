@@ -37,7 +37,7 @@ exports.signup = (req, res) => {
               return;
             }
 
-            res.send({ message: "User was registered successfully!" });
+            res.status(200).send({ success: true, message: "User was registered successfully!" });
           });
         }
       );
@@ -74,7 +74,7 @@ exports.signin = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(200).send({success: false, message: "User Not found." });
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -83,7 +83,8 @@ exports.signin = (req, res) => {
       );
 
       if (!passwordIsValid) {
-        return res.status(401).send({
+        return res.status(200).send({
+          success: false,
           accessToken: null,
           message: "Invalid Password!"
         });
@@ -99,6 +100,7 @@ exports.signin = (req, res) => {
         authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
       }
       res.status(200).send({
+        success: true,
         id: user._id,
         username: user.username,
         email: user.email,

@@ -40,12 +40,22 @@ const isAdmin = (req, res, next) => {
 
         for (let i = 0; i < roles.length; i++) {
           if (roles[i].name === "admin") {
+            const userDetail = {
+              username: user.username,
+              isAdmin: true,
+            }
+            req.userDetail = userDetail;
             next();
             return;
           }
         }
 
-        res.status(403).send({ message: "Require Admin Role!" });
+        const userDetail = {
+          username: user.username,
+          isAdmin: false,
+        }
+        req.userDetail = userDetail;
+        next();
         return;
       }
     );
