@@ -10,7 +10,6 @@ const ContactInfo = () => {
         const fetchData = async () => {
             const result = await fetch('api/personalinfo');
             const jsonResult = await result.json();
-            console.log(jsonResult);
             setContactInfos(jsonResult);
             setIsLoaded(true);
         }

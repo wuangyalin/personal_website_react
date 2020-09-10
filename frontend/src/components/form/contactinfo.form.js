@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { updateContactInfo } from '../../services/admin.update';
 import { Row, FormGroup, FormLabel, Col } from 'react-bootstrap';
-import SubmitButton from './button.submit';
+import { SubmitButton} from './form.button';
 
 
 

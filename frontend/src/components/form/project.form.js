@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { updateProjects } from '../../services/admin.update';
 import { Row, FormGroup, FormLabel, Col } from 'react-bootstrap';
-import SubmitButton from './button.submit';
+import { SubmitButton } from './form.button';
+import RichField from './richtest.field';
 
 
 
@@ -10,6 +11,10 @@ import SubmitButton from './button.submit';
 const ProjectForm = ({ project }) => {
     const [isChanged, setIsChanged] = useState(false);
     const [isUpdated, setIsUpdated] = useState(false);
+
+    // const customRichField = () => {
+    //     return <RichField content = {project.content} />;
+    // }
 
     return <Formik
         initialValues={{
@@ -64,7 +69,11 @@ const ProjectForm = ({ project }) => {
                     </FormGroup>
                     <FormGroup as={Col}>
                         <FormLabel>Percentage</FormLabel>
-                        <Field id="percentage" className="form-control" name="percentage" />
+                        <Field as="select" className="form-control" name="percentage">
+                            <option value="50">50%</option>
+                            <option value="80">80%</option>
+                            <option value="100">100%</option>
+                        </Field>
                         <ErrorMessage name="percentage" component="div" />
                     </FormGroup>
                 </Row>
@@ -72,7 +81,17 @@ const ProjectForm = ({ project }) => {
                 <Row>
                     <FormGroup as={Col}>
                         <FormLabel>Description</FormLabel>
-                        <Field component="textarea" rows={3} id="description" name="description" className="form-control" placeholder="Description" />
+                        <Field id="description" name="description" className="form-control" placeholder="Description" >
+                            {({ field: { value }, form: { setFieldValue } }) => (
+                                <RichField
+                                    content={value}
+                                    handleChange={c => {
+                                        setFieldValue('description', c);
+                                        if (!isChanged) setIsChanged(true);
+                                    }}
+                                />
+                            )}
+                        </Field>
                         <ErrorMessage name="description" component="div" />
                     </FormGroup>
                 </Row>
@@ -80,7 +99,17 @@ const ProjectForm = ({ project }) => {
                 <Row>
                     <FormGroup as={Col}>
                         <FormLabel>Contribution</FormLabel>
-                        <Field component="textarea" rows={3} id="contribution" name="contribution" className="form-control" placeholder="Contribution" />
+                        <Field id="contribution" name="contribution" className="form-control" placeholder="Contribution" >
+                            {({ field: { value }, form: { setFieldValue } }) => (
+                                <RichField
+                                    content={value}
+                                    handleChange={c => {
+                                        setFieldValue('contribution', c);
+                                        if (!isChanged) setIsChanged(true);
+                                    }}
+                                />
+                            )}
+                        </Field>
                         <ErrorMessage name="contribution" component="div" />
                     </FormGroup>
                 </Row>

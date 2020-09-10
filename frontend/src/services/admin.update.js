@@ -7,11 +7,23 @@ export const updateAbout = async (description, name, id) => {
 };
 
 
-export const updateSkills = async (content, name, id) => {
-    const response = await axios.post(`/api/skills/${id}/update`, { content, name });
+export const updateSkills = async (content, name, id, _id) => {
+    const response = await axios.post(`/api/skills/${id}/update`, { content, name, id });
 
     return response.data.success;
 };
+
+export const addNewSkill = async (content, name, id) => {
+    const response = await axios.post(`/api/skills/add`, { content, name, id });
+
+    return response.data.success;
+};
+
+export const deleteSkill = async (_id) => {
+    const response = await axios.post(`/api/skills/${_id}/delete`);
+
+    return response.data.success;
+}
 
 export const updateProjects = async (values) => {
     const { id,

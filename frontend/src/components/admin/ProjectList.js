@@ -10,7 +10,6 @@ const Work = () => {
         const fetchData = async () => {
             const result = await fetch('api/projects');
             const jsonResult = await result.json();
-            console.log(jsonResult);
             setProjects(jsonResult);
             setIsLoaded(true);
         }

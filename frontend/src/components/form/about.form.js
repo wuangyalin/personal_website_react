@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { updateAbout } from '../../services/admin.update';
 import { Row, FormGroup, FormLabel, Col } from 'react-bootstrap';
-import SubmitButton from './button.submit';
+import { SubmitButton } from './form.button';
+import RichField from './richtest.field';
+
 
 
 
@@ -24,7 +26,7 @@ const AboutForm = ({ aboutSection }) => {
                 setIsUpdated(true);
                 setIsChanged(false);
             } else {
-                console.log(123);
+                console.log('Somthing went wrong');
             }
 
         } catch (error) {
@@ -54,7 +56,6 @@ const AboutForm = ({ aboutSection }) => {
             {({ isSubmitting }) => (
                 <Form onChange={() => setIsChanged(true)}>
 
-                    <h1 className="h3 mb-3 font-weight-normal">Edit About Section </h1>
                     <Row>
                         <FormGroup as={Col}>
                             <FormLabel>Name</FormLabel>
@@ -66,7 +67,18 @@ const AboutForm = ({ aboutSection }) => {
                     <Row>
                         <FormGroup as={Col}>
                             <FormLabel>Description</FormLabel>
-                            <Field component="textarea" rows={10} id="description" name="description" className="form-control" placeholder="description" />
+                            {/* <Field component="textarea" rows={10} id="description" name="description" className="form-control" placeholder="description" /> */}
+                            <Field id="description" name="description" className="form-control" placeholder="Description" >
+                                {({ field: { value }, form: { setFieldValue } }) => (
+                                    <RichField
+                                        content={value}
+                                        handleChange={c => {
+                                            setFieldValue('description', c);
+                                            if (!isChanged) setIsChanged(true);
+                                        }}
+                                    />
+                                )}
+                            </Field>
                             <ErrorMessage name="description" component="div" />
                         </FormGroup>
                     </Row>

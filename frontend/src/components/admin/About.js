@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AboutForm from '../form/about.form';
 
 
+
 const About = () => {
     const [aboutSection, setAboutSection] = useState({});
     const [isLoaded, setIsLoaded] = useState(false);
@@ -22,6 +23,7 @@ const About = () => {
     return (
         isLoaded ?
             <React.Fragment>
+                <h1 className="h3 mb-3 font-weight-normal">Edit About Section </h1>
                 <AboutForm aboutSection={aboutSection} />
             </React.Fragment>
             :
