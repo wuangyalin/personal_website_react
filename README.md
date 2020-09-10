@@ -12,7 +12,7 @@ When finished, it can replace nmy current personal website from WordPress to Rea
 - [x] Express
 
 ## DB
-- [x] mongo/dynamodb
+- [x] mongo
 
 ## Functionality 
 - [x] View page
@@ -31,10 +31,16 @@ When finished, it can replace nmy current personal website from WordPress to Rea
      4. res to send roles and token
   5. /api/test/(user or mod or admin)
      1. middleware: authJwt to verify token
-- [ ] Admin page
-  - [ ] Edit Form
-  - [ ] New Form
-  - [ ] Delete  
+- [x] Admin page
+  - [x] Edit Form
+  - [x] Form Syle (dropdown, rich text)
+  - [x] New Form
+  - [x] Delete  
+- [ ] Contact Form send email
+
+## CI/CD
+- [ ] Docker
+- [ ] Deploy
 
 ## Unit Testing
 - [ ] Use Jest

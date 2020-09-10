@@ -264,6 +264,7 @@ app.post('/api/skills/:id/delete', async (req, res) => {
         await db.collection('skills').deleteOne({ _id: _id });
         res.status(200).json('success');
     }, res);
+    res.status(200).json({ success: true });
 });
 
 // add skill
@@ -280,7 +281,7 @@ app.post('/api/skills/add', async (req, res) => {
         };
         await db.collection('skills').insertOne(newProject);
 
-        res.status(200).json('success');
+        res.status(200).json({ success: true });
     }, res);
 });
 
