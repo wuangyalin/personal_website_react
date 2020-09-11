@@ -8,11 +8,13 @@ script:
 
 before_deploy:
     - docker login -u wuangyalin -p e5bf7f03-377e-4c06-a64a-3e55ba43f58a
+    - docker tag personal_website_react_frontend:latest luke/frontend:latest
+    - docker tag personal_website_react_backend:latest luke/backend:latest
 
 deploy:
     provider: script
     script: 
-        - docker push wuangyalin/personal_website_react_frontend
-        - docker push wuangyalin/personal_website_react_backend
+        - docker push luke/frontend:latest
+        - docker push luke/backend:latest
     on:
         branch: master
