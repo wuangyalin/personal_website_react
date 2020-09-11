@@ -11,6 +11,8 @@ before_deploy:
 
 deploy:
     provider: script
-    script: docker push frontend backend
+    script: 
+        - docker push frontend
+        - docker push backend
     on:
         branch: master
