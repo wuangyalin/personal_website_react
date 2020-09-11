@@ -5,3 +5,12 @@ services:
 script:
     - docker-compose build
     - docker images
+
+before_deploy:
+    - docker login -u wuangyalin -p e5bf7f03-377e-4c06-a64a-3e55ba43f58a
+
+deploy:
+    provider: script
+    script: docker push frontend backend
+    on:
+        branch: master
