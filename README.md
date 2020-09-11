@@ -9,11 +9,22 @@ When finished, it can replace nmy current personal website from WordPress to Rea
 #### frontend: 
 Host the frontend files using `create-react-app`
 
+**Docker added**: if you want to run on localhost, you have to do the following things:
+1. change the `"proxy": "http://backend:8000/"` to `"proxy": "http://localhost:8000/"`
+
 #### backend:
 Host the backend files using `express` and `node.js`
 
+**Docker added**: if you want to run on localhost, you have to do the following things:
+1. In `server.js`, change the `mongodb://mongo:27017` to `mongodb://localhost:27017`
+
 #### fullsite
-Combine the `build` frontend files into backend. 
+
+Combined the `build` frontend files into backend, no docker setup, so you have to have your own mongo client installed and import the initial files under `mongo-seed` directory. 
+
+
+#### mongo-seed
+for docker container: add the default data into mongo docker client.
 
 ---
 ## Technology used
@@ -60,3 +71,12 @@ Combine the `build` frontend files into backend.
 - [ ] Use Jest
 
 ---
+
+## How to Run Docker
+1. create dockerfile for each app
+2. create docker-compose yml file to combine multiple services
+3. run `docker-compose up -d mongo` first to initial mongodb
+4. run `docker-compose up -d mongo-seed` to add initial data into mongodb
+5. run `docker exec -it mongo bash` to check if the initial data is been pushed
+6. run `docker-compose up -d backend` to run the web app
+7. run `docker-compose up -d frontend` to run the web app

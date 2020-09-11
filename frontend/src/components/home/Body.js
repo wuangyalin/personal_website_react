@@ -25,7 +25,8 @@ const Body = () => {
         const fetchData = async () => {
             const result = await fetch('api/sections');
             const body = await result.json();
-            setSections(body);
+            const sortedResult = body.sort((a, b) => (a._id > b._id) ? 1 : -1);
+            setSections(sortedResult);
             setIsLoaded(true);
         }
         fetchData();

@@ -1,0 +1,31 @@
+[{
+  "_id": {
+    "$oid": "5f322daf8ca0fddb5d814f48"
+  },
+  "name": "GitHub",
+  "id": "github",
+  "link": "https://github.com/wuangyalin",
+  "icon": "github",
+  "iconType": "fab",
+  "size": "4x"
+},{
+  "_id": {
+    "$oid": "5f322daf8ca0fddb5d814f49"
+  },
+  "name": "LinkedIn",
+  "id": "linkedin",
+  "link": "https://www.linkedin.com/in/xun-gong-32a5b6103/",
+  "icon": "linkedin",
+  "iconType": "fab",
+  "size": "4x"
+},{
+  "_id": {
+    "$oid": "5f322daf8ca0fddb5d814f4a"
+  },
+  "name": "Resume",
+  "id": "resume",
+  "link": "http://profile.lukegong.com/resume.pdf",
+  "icon": "download",
+  "iconType": "fas",
+  "size": "4x"
+}]

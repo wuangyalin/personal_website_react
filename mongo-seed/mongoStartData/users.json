@@ -1,0 +1,58 @@
+[{
+  "_id": {
+    "$oid": "5f55e6ffb9013164487e12ba"
+  },
+  "roles": [
+    {
+      "$oid": "5f55d724d4bc3d519084ce9a"
+    },
+    {
+      "$oid": "5f55d724d4bc3d519084ce9b"
+    },
+    {
+      "$oid": "5f55d724d4bc3d519084ce9c"
+    }
+  ],
+  "username": "admin",
+  "email": "lukegong.it@gmail.com",
+  "password": "$2a$08$2J5v/txOtJKHGvM6KUF8WuRmzX/RofZNJhi/fWVZzYZh7oJJQo08i",
+  "date": {
+    "$date": "2020-09-07T07:53:35.214Z"
+  },
+  "__v": 1
+},{
+  "_id": {
+    "$oid": "5f55e713b9013164487e12bb"
+  },
+  "roles": [
+    {
+      "$oid": "5f55d724d4bc3d519084ce9a"
+    },
+    {
+      "$oid": "5f55d724d4bc3d519084ce9b"
+    }
+  ],
+  "username": "moderator_1",
+  "email": "moderator_1@gmail.com",
+  "password": "$2a$08$LsNxSrwegc/6ZpdwMt/ImOhkVZNd7X/f1Kudsrd4dwsT7NtjA5L7W",
+  "date": {
+    "$date": "2020-09-07T07:53:55.063Z"
+  },
+  "__v": 1
+},{
+  "_id": {
+    "$oid": "5f55e727b9013164487e12bc"
+  },
+  "roles": [
+    {
+      "$oid": "5f55d724d4bc3d519084ce9a"
+    }
+  ],
+  "username": "user_1",
+  "email": "user_1@gmail.com",
+  "password": "$2a$08$NoHXtVnAoKq1tZLHxj8r6.hOANMJtec00Rh9qKhLw2d2ujEyjFNU6",
+  "date": {
+    "$date": "2020-09-07T07:54:15.985Z"
+  },
+  "__v": 1
+}]
