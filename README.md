@@ -66,6 +66,7 @@ for docker container: add the default data into mongo docker client.
 ### CI/CD
 - [ ] Docker
 - [ ] Deploy using git
+- [ ] Deploy using Travis
 
 ### Unit Testing
 - [ ] Use Jest
