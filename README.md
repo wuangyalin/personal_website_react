@@ -4,17 +4,31 @@
 This project is aiming to pratice the MERN Stack skills.
 When finished, it can replace nmy current personal website from WordPress to React.
 
-## Front-end
+---
+## Directory Explaination 
+#### frontend: 
+Host the frontend files using `create-react-app`
+
+#### backend:
+Host the backend files using `express` and `node.js`
+
+#### fullsite
+Combine the `build` frontend files into backend. 
+
+---
+## Technology used
+
+#### Front-end
 - [x] React.js
 
-## Backend
+### Backend
 - [x] Node.js
 - [x] Express
 
-## DB
+### DB
 - [x] mongo
 
-## Functionality 
+### Functionality 
 - [x] View page
 - [x] Three.js
 - [x] login
@@ -38,9 +52,11 @@ When finished, it can replace nmy current personal website from WordPress to Rea
   - [x] Delete  
 - [ ] Contact Form send email
 
-## CI/CD
+### CI/CD
 - [ ] Docker
-- [ ] Deploy
+- [ ] Deploy using git
 
-## Unit Testing
+### Unit Testing
 - [ ] Use Jest
+
+---

@@ -10,7 +10,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors());
 
 /** AUTH */
 mongoose.Promise = global.Promise;
@@ -343,4 +343,4 @@ app.post('/api/socials/add', async (req, res) => {
     }, res);
 });
 
-app.listen(7000, () => console.log('listening on port 7000'));
+app.listen(8000, () => console.log('listening on port 8000'));
