@@ -13,8 +13,6 @@ before_deploy:
 
 deploy:
     provider: script
-    script: 
-        - docker push wuangyalin/frontend
-        - docker push wuangyalin/backend
+    script: bash bash/image.push.sh
     on:
         branch: master
