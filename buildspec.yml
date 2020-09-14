@@ -12,7 +12,7 @@ phases:
       - pwd
       - $(aws ecr get-login --region ap-southeast-2 --no-include-email)
     #   - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 087426290981.dkr.ecr.ap-southeast-2.amazonaws.com
-      - REPOSITORY_URI=087426290981.dkr.ecr.ap-southeast-2.amazonaws.com/react_personal_website
+      - REPOSITORY_URI=087426290981.dkr.ecr.ap-southeast-2.amazonaws.com
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
@@ -20,8 +20,9 @@ phases:
       - echo Building the Docker image...
       - docker-compose build
       - docker images
-      - docker tag frontend:latest $REPOSITORY_URI:frontend
-      - docker tag backend:latest $REPOSITORY_URI:backend
+      - docker tag frontend:latest $REPOSITORY_URI/react_personal_frontend:$IMAGE_TAG
+      - docker tag backend:latest $REPOSITORY_URI/react_personal_backend:$IMAGE_TAG
+      - docker tag mongoseed:latest $REPOSITORY_URI/react_personal_mongoseed:$IMAGE_TAG
 
     #   - docker build -t $REPOSITORY_URI:latest .
     #   - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
@@ -29,5 +30,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI/frontend:latest
-      - docker push $REPOSITORY_URI/backend:latest
+      - docker push $REPOSITORY_URI/react_personal_frontend:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/react_personal_backend:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/react_personal_mongoseed:$IMAGE_TAG
