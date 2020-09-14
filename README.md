@@ -4,8 +4,8 @@
 This project is aiming to pratice the MERN Stack skills.
 When finished, it can replace nmy current personal website from WordPress to React.
 
-**WORDPRESS** VERSION: https://lukegong.com (hosted on CPANEL)
-**MERN** VERSION: http://ec2-3-25-135-244.ap-southeast-2.compute.amazonaws.com/  (hosted on AWS EC2 instance)
+* **WORDPRESS** VERSION: https://lukegong.com (hosted on CPANEL)
+* **MERN** VERSION: http://ec2-3-25-135-244.ap-southeast-2.compute.amazonaws.com/  (hosted on AWS EC2 instance)
 
 ---
 ## Directory Explaination 
