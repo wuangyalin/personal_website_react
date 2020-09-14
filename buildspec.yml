@@ -20,9 +20,9 @@ phases:
       - echo Building the Docker image...
       - docker-compose build
       - docker images
-      - docker tag frontend:latest $REPOSITORY_URI/react_personal_frontend:$IMAGE_TAG
-      - docker tag backend:latest $REPOSITORY_URI/react_personal_backend:$IMAGE_TAG
-      - docker tag mongoseed:latest $REPOSITORY_URI/react_personal_mongoseed:$IMAGE_TAG
+      - docker tag frontend:latest $REPOSITORY_URI/react_personal_frontend:v1.0
+      - docker tag backend:latest $REPOSITORY_URI/react_personal_backend:v1.0
+      - docker tag mongoseed:latest $REPOSITORY_URI/react_personal_mongoseed:v1.0
 
     #   - docker build -t $REPOSITORY_URI:latest .
     #   - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
@@ -30,6 +30,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI/react_personal_frontend:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/react_personal_backend:$IMAGE_TAG
-      - docker push $REPOSITORY_URI/react_personal_mongoseed:$IMAGE_TAG
+      - docker push $REPOSITORY_URI/react_personal_frontend
+      - docker push $REPOSITORY_URI/react_personal_backend
+      - docker push $REPOSITORY_URI/react_personal_mongoseed
