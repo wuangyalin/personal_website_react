@@ -14,7 +14,7 @@ app.use(cors());
 
 /** AUTH */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://mongo:27017/user_auth', {
+mongoose.connect('mongodb://localhost:27017/user_auth', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -70,7 +70,7 @@ function initial() {
 
 const withDB = async (operations, res) => {
     try {
-        const client = await MongoClient.connect('mongodb://mongo:27017', { useUnifiedTopology: true });
+        const client = await MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true });
         const db = client.db('personal');
         await operations(db);
         client.close();

@@ -8,27 +8,16 @@ When finished, it can replace my current personal website from WordPress to Reac
 * **MERN** VERSION: http://ec2-3-25-135-244.ap-southeast-2.compute.amazonaws.com/  (hosted on AWS EC2 instance)
 
 ---
+### For docker integration, checkout branch `docker`
+
+---
 ## Directory Explaination 
 
 #### frontend: 
 Host the frontend files using `create-react-app`
 
-**Docker added**: if you want to run on localhost, you have to do the following things:
-1. change the `"proxy": "http://backend:8000/"` to `"proxy": "http://localhost:8000/"`
-
 #### backend:
 Host the backend files using `express` and `node.js`
-
-**Docker added**: if you want to run on localhost, you have to do the following things:
-1. In `server.js`, change the `mongodb://mongo:27017` to `mongodb://localhost:27017`
-
-#### fullsite
-
-Combined the `build` frontend files into backend, no docker setup, so you have to have your own mongo client installed and import the initial files under `mongo-seed` directory. 
-
-
-#### mongo-seed
-for docker container: add the default data into mongo docker client.
 
 ---
 ## Technology used
@@ -68,9 +57,9 @@ for docker container: add the default data into mongo docker client.
 - [ ] Contact Form send email
 
 ### CI/CD
-- [x] Docker
+- [x] Docker (checkout another branch `docker`)
 - [x] Deploy using git
-- [x] Deploy using Travis
+- [x] Deploy using Travis (checkout another branch `docker`)
 
 ### Unit Testing
 - [ ] Use Jest
@@ -78,10 +67,11 @@ for docker container: add the default data into mongo docker client.
 ---
 
 ## How to Run Docker
-1. create dockerfile for each app
-2. create docker-compose yml file to combine multiple services
-3. run `docker-compose up -d mongo` first to initial mongodb
-4. run `docker-compose up -d mongo-seed` to add initial data into mongodb
-5. run `docker exec -it mongo bash` to check if the initial data is been pushed
-6. run `docker-compose up -d backend` to run the web app
-7. run `docker-compose up -d frontend` to run the web app
+1. Checkout `docker` branch.
+2. Check dockerfile for each app
+3. Check docker-compose yml file to combine multiple services
+4. run `docker-compose up -d mongo` first to initial mongodb
+5. run `docker-compose up -d mongo-seed` to add initial data into mongodb
+6. run `docker exec -it mongo bash` to check if the initial data is been pushed
+7. run `docker-compose up -d backend` to run the web app
+8. run `docker-compose up -d frontend` to run the web app
