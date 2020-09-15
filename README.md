@@ -2,10 +2,14 @@
 
 # UNDER CONSTRUCTION
 This project is aiming to pratice the MERN Stack skills.
-When finished, it can replace nmy current personal website from WordPress to React.
+When finished, it can replace my current personal website from WordPress to React.
+
+* **WORDPRESS** VERSION: https://lukegong.com (hosted on CPANEL)
+* **MERN** VERSION: http://ec2-3-25-135-244.ap-southeast-2.compute.amazonaws.com/  (hosted on AWS EC2 instance)
 
 ---
 ## Directory Explaination 
+
 #### frontend: 
 Host the frontend files using `create-react-app`
 
@@ -64,9 +68,9 @@ for docker container: add the default data into mongo docker client.
 - [ ] Contact Form send email
 
 ### CI/CD
-- [ ] Docker
-- [ ] Deploy using git
-- [ ] Deploy using Travis
+- [x] Docker
+- [x] Deploy using git
+- [x] Deploy using Travis
 
 ### Unit Testing
 - [ ] Use Jest
