@@ -5,6 +5,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import db from './models/index';
 import authRoute from './routes/auth.routes';
+import dataRoute from './routes/data.routes';
 
 const app = express();
 
@@ -14,9 +15,10 @@ app.use(cors());
 
 /** AUTH */
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/user_auth', {
+mongoose.connect('mongodb://localhost:27017/personal', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(() => {
     console.log("Successfully connect to MongoDB.");
     initial();
@@ -28,6 +30,7 @@ mongoose.connect('mongodb://localhost:27017/user_auth', {
 const Role = db.role;
 
 authRoute(app);
+dataRoute(app);
 
 function initial() {
     Role.estimatedDocumentCount((err, count) => {
@@ -78,104 +81,6 @@ const withDB = async (operations, res) => {
         res.status(500).json({ message: 'Error connecting to db', error });
     }
 }
-
-// get personal info - email, phone, and address
-app.get('/api/personalinfo', async (req, res) => {
-    withDB(async (db) => {
-        const personalinfo = await db.collection('personalinfo').find({}).toArray();
-        res.status(200).json(personalinfo);
-    }, res);
-});
-
-// update personalinfo by type
-app.post('/api/personalinfo/:id/update', async (req, res) => {
-    const _id = new ObjectId(req.params.id);
-    const { icon, content, iconType, size } = req.body;
-    withDB(async (db) => {
-        const typeToUpdate = await db.collection('personalinfo').findOne({ _id: _id });
-
-        await db.collection('personalinfo').updateOne({ _id: _id }, {
-            '$set': {
-                icon: icon ? icon : typeToUpdate.icon,
-                content: content ? content : typeToUpdate.content,
-                iconType: iconType ? iconType : typeToUpdate.iconType,
-                size: size ? size : typeToUpdate.size
-            }
-        });
-        const updatedTypeToUpdate = await db.collection('personalinfo').findOne({ _id: _id });
-
-        res.status(200).json(updatedTypeToUpdate);
-    }, res);
-});
-
-// get all the project list
-app.get('/api/projects', async (req, res) => {
-    withDB(async (db) => {
-        const projects = await db.collection('projects').find({}).toArray();
-        res.status(200).json(projects);
-    }, res);
-});
-
-// update projects by type
-app.post('/api/projects/:id/update', async (req, res) => {
-    const _id = new ObjectId(req.params.id);
-    const { name, id, image, type, link, description, contribution, percentage } = req.body;
-
-    withDB(async (db) => {
-        const typeToUpdate = await db.collection('projects').findOne({ _id: _id });
-        console.log(typeToUpdate);
-
-        await db.collection('projects').updateOne({ _id: _id }, {
-            '$set': {
-                id: id ? id : typeToUpdate.id,
-                name: name ? name : typeToUpdate.name,
-                image: image ? image : typeToUpdate.image,
-                link: link ? link : typeToUpdate.link,
-                type: type ? type : typeToUpdate.type,
-                description: description ? description : typeToUpdate.description,
-                contribution: contribution ? contribution : typeToUpdate.contribution,
-                percentage: percentage ? percentage : typeToUpdate.percentage,
-            }
-        });
-
-        const updatedTypeToUpdate = await db.collection('projects').findOne({ _id: _id });
-
-        res.status(200).json(updatedTypeToUpdate);
-
-    }, res);
-
-});
-
-// add project
-app.post('/api/projects/add', async (req, res) => {
-    const { name, id, image, type, link, description, contribution, percentage } = req.body;
-
-    withDB(async (db) => {
-        const newProject = {
-            id: id,
-            name: name,
-            image: image,
-            link: link,
-            type: type,
-            description: description,
-            contribution: contribution,
-            percentage: percentage,
-        };
-        await db.collection('projects').insertOne(newProject);
-
-        res.status(200).json('success');
-    }, res);
-});
-
-// delete project
-app.post('/api/projects/:id/delete', async (req, res) => {
-    const _id = new ObjectId(req.params.id);
-    withDB(async (db) => {
-        await db.collection('projects').deleteOne({ _id: _id });
-
-        res.status(200).json('success');
-    }, res);
-});
 
 // get project types 
 app.get('/api/projectlist', async (req, res) => {
