@@ -26,6 +26,8 @@
     "react-spring": "^8.0.27",
     "react-transition-group": "^4.4.1",
     "react-validation": "^3.0.7",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^5.1.1",
     "three": "^0.119.1",
     "tinymce": "^5.4.2",
@@ -53,5 +55,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
+  }
 }
