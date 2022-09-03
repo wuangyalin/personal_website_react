@@ -82,6 +82,6 @@ for docker container: add the default data into mongo docker client.
 2. create docker-compose yml file to combine multiple services
 3. run `docker-compose up -d mongo` first to initial mongodb
 4. run `docker-compose up -d mongo-seed` to add initial data into mongodb
-5. run `docker exec -it mongo bash` to check if the initial data is been pushed
+5. run `docker exec -it mongo mongosh` to check if the initial data is been pushed
 6. run `docker-compose up -d backend` to run the web app
 7. run `docker-compose up -d frontend` to run the web app

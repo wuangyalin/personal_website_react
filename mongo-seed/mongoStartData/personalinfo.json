@@ -1,28 +1,32 @@
-[{
-  "_id": {
-    "$oid": "5f3224de1500bbb0619f3fc6"
+[
+  {
+    "_id": {
+      "$oid": "5f3224de1500bbb0619f3fc6"
+    },
+    "type": "email",
+    "content": "lukegong.it@gmail.com",
+    "icon": "envelope",
+    "iconType": "fas",
+    "size": "1x"
   },
-  "type": "email",
-  "content": "lukegong.it@gmail.com",
-  "icon": "envelope",
-  "iconType": "fas",
-  "size": "1x"
-},{
-  "_id": {
-    "$oid": "5f3224de1500bbb0619f3fc7"
+  {
+    "_id": {
+      "$oid": "5f3224de1500bbb0619f3fc7"
+    },
+    "type": "phone",
+    "content": "0425920818",
+    "icon": "phone",
+    "iconType": "fas",
+    "size": "1x"
   },
-  "type": "phone",
-  "content": "0425920818",
-  "icon": "phone",
-  "iconType": "fas",
-  "size": "1x"
-},{
-  "_id": {
-    "$oid": "5f3224de1500bbb0619f3fc8"
-  },
-  "type": "name",
-  "content": "Xun(Luke) Gong",
-  "icon": "user",
-  "iconType": "fas",
-  "size": "1x"
-}]
+  {
+    "_id": {
+      "$oid": "5f3224de1500bbb0619f3fc8"
+    },
+    "type": "name",
+    "content": "Xun(Luke) Gong",
+    "icon": "user",
+    "iconType": "fas",
+    "size": "1x"
+  }
+]
