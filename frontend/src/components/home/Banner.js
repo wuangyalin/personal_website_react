@@ -1,5 +1,8 @@
 import React from 'react';
 import * as THREE from "three";
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+import { LightShadow } from 'three/src/lights/LightShadow.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js';
 window.THREE = THREE;
@@ -58,7 +61,7 @@ class Banner extends React.Component {
 
             light.castShadow = true;
 
-            light.shadow = new THREE.LightShadow(new THREE.PerspectiveCamera(50, 1, 1200, 2500));
+            light.shadow = new LightShadow(new THREE.PerspectiveCamera(50, 1, 1200, 2500));
             light.shadow.bias = 0.0001;
 
             light.shadow.mapSize.width = SHADOW_MAP_WIDTH;
@@ -133,10 +136,10 @@ class Banner extends React.Component {
 
             // TEXT
 
-            var loader = new THREE.FontLoader();
+            var loader = new FontLoader();
             loader.load('../../assets/lib/fonts/optimer_regular.typeface.json', function (font) {
 
-                var textGeo = new THREE.TextGeometry("Luke Gong", {
+                var textGeo = new TextGeometry("Luke Gong", {
 
                     font: font,
 
