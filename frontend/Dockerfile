@@ -1,4 +1,4 @@
-FROM node
+FROM node:14.17.3
 
 RUN mkdir /frontend
 WORKDIR /frontend
