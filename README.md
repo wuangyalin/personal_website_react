@@ -86,8 +86,9 @@ for docker container: add the default data into mongo docker client.
 6. run `docker exec -it mongo mongosh` to check if the initial data is been pushed
    1. `show dbs`
    2. `show collections`
-7. run `docker-compose up -d backend` to run the web app
-8. run `docker-compose up -d frontend` to run the web app
+7. run `docker-compose up -d backend` to run the backend app
+8. run `docker-compose up -d frontend` to run the frontend app
+9. run `docker-compose up -d nginx` to run the web proxy
 
 
 ## userful tools
