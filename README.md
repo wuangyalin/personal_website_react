@@ -88,7 +88,6 @@ for docker container: add the default data into mongo docker client.
    2. `show collections`
 7. run `docker-compose up -d backend` to run the backend app
 8. run `docker-compose up -d frontend` to run the frontend app
-9. run `docker-compose up -d nginx` to run the web proxy
 
 
 ## userful tools
