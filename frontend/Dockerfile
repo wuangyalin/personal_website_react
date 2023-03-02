@@ -1,4 +1,4 @@
-FROM node:14.17.3 AS builder
+FROM node:16.19.1 AS builder
 
 RUN mkdir /frontend
 WORKDIR /frontend
