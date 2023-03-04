@@ -93,3 +93,11 @@ for docker container: add the default data into mongo docker client.
 ## userful tools
 `sudo sh -c "truncate -s 0 /var/lib/docker/containers/**/*-json.log"` clear logs
 `docker-compose logs` show logs
+
+### Delete all containers using the following command:
+`docker rm -f $(docker ps -a -q)`
+### Delete all volumes using the following command:
+`docker volume rm $(docker volume ls -q)`
+
+### Delete all image using the following command:
+`docker image rm $(docker image ls -q)`
